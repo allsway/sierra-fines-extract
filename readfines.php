@@ -47,10 +47,9 @@ if ($handle) {
        $itemrec=trim($parts[1],'"');
        
        // Process patron record check digit
-		if(strlen($patronrec)>2 && $patronrec != "RECORD #(PATRON)")
-		{     
-			$checkdigit = getcheckdigit($patronrec);
-			
+	if(strlen($patronrec)>2 && $patronrec != "RECORD #(PATRON)")
+	{     
+		$checkdigit = getcheckdigit($patronrec);
        	}
        	else
        	{
@@ -61,19 +60,18 @@ if ($handle) {
        	// Process item record check digit
        	//i1460254 to 4
        	if(strlen($itemrec)>0 && $itemrec != "RECORD #(ITEM)")
-		{      
+	{      
        		$checkdigit = getcheckdigit($itemrec);
-       		
        	}
        	else
        	{
        		$checkdigit = '';
        	}
        	$itemrec = '"' . $itemrec . $checkdigit . '"';
-		$parts[0] = $patronrec;
-		$parts[1] = $itemrec;
-		$finalcsv = implode($parts,",");
- 		echo $finalcsv;
+	$parts[0] = $patronrec;
+	$parts[1] = $itemrec;
+	$finalcsv = implode($parts,",");
+ 	echo $finalcsv;
     }
 
     fclose($handle);
