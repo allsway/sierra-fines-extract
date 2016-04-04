@@ -1,5 +1,5 @@
 /*
-	Retrieves all current patron fines from Sierra
+	Retrieves all current patron fines from Sierra, limited by PTYPE
 */
 
 SELECT 
@@ -22,4 +22,7 @@ SELECT
     campus_code AS "DELETED LOCATION"
 FROM sierra_view.fine 
 LEFT JOIN sierra_view.item_view ON sierra_view.fine.item_record_metadata_id=sierra_view.item_view.id
-LEFT JOIN sierra_view.record_metadata ON fine.item_record_metadata_id=record_metadata.id;
+LEFT JOIN sierra_view.record_metadata ON fine.item_record_metadata_id=record_metadata.id
+WHERE patron_record_id IN (SELECT id FROM sierra_view.patron_view
+WHERE patron_view.ptype_code >= 0 AND patron_view.ptype_code <= 30)
+ORDER BY 1;
