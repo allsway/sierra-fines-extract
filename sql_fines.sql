@@ -17,9 +17,9 @@ SELECT
     due_gmt AS "DUE DATE",
     returned_gmt AS "RETURNED DATE",
     charge_code AS "CHARGE TYPE",
+    title AS "ITEM TITLE",
     'Record ' || record_metadata.record_type_code || record_metadata.record_num || ' deleted on ' || deletion_date_gmt  AS "DELETED INFO",
     campus_code AS "DELETED LOCATION"
 FROM sierra_view.fine 
 LEFT JOIN sierra_view.item_view ON sierra_view.fine.item_record_metadata_id=sierra_view.item_view.id
-LEFT JOIN sierra_view.record_metadata ON fine.item_record_metadata_id=record_metadata.id
-ORDER BY 1;
+LEFT JOIN sierra_view.record_metadata ON fine.item_record_metadata_id=record_metadata.id;
