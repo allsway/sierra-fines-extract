@@ -17,6 +17,7 @@ SELECT
     due_gmt AS "DUE DATE",
     returned_gmt AS "RETURNED DATE",
     charge_code AS "CHARGE TYPE",
+    title as "ITEM TITLE",
     'Record ' || record_metadata.record_type_code || record_metadata.record_num || ' deleted on ' || deletion_date_gmt  AS "DELETED INFO", 
     CASE WHEN campus_code!='' THEN record_metadata.record_type_code || record_metadata.record_num || '@' || campus_code
     END AS "VIRTUAL REC NUM"
