@@ -18,9 +18,11 @@ SELECT
     returned_gmt AS "RETURNED DATE",
     charge_code AS "CHARGE TYPE",
     title as "ITEM TITLE",
+    overdue_gmt AS "OVERDUE DATE", 
     'Record ' || record_metadata.record_type_code || record_metadata.record_num || ' deleted on ' || deletion_date_gmt  AS "DELETED INFO", 
     CASE WHEN campus_code!='' THEN record_metadata.record_type_code || record_metadata.record_num || '@' || campus_code
     END AS "VIRTUAL REC NUM"
 FROM sierra_view.fine 
 LEFT JOIN sierra_view.item_view ON sierra_view.fine.item_record_metadata_id=sierra_view.item_view.id
+LEFT JOIN sierra_view.checkout ON fine.item_record_metadata_id=checkout.item_record_id
 LEFT JOIN sierra_view.record_metadata ON fine.item_record_metadata_id=record_metadata.id ORDER BY 1;
