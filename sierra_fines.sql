@@ -15,7 +15,7 @@ SELECT
     description AS "FINE COMMENT",
     checkout_gmt::timestamp AS "OUT DATE",
     due_gmt::timestamp AS "DUE DATE",
-    returned_gmt:timestamp AS "RETURNED DATE",
+    returned_gmt::timestamp AS "RETURNED DATE",
     charge_code AS "CHARGE TYPE",
     title AS "ITEM TITLE",
     'Record ' || record_metadata.record_type_code || record_metadata.record_num || ' deleted on ' || deletion_date_gmt  AS "DELETED INFO", 
