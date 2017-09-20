@@ -7,6 +7,6 @@ Run this query to extract all fines from your Sierra system. The following field
 ```
 
 ##### readfines.php
-Run the following command, where ‘originalfinesfile.csv’ is the name of your current exported fines file:
+Run the following command to add the check digit to the patron and item record columns, where ‘originalfinesfile.csv’ is the name of your current exported fines file:
 
 `php readfines.php originalfinesfile.csv > newfinesfile.csv`
