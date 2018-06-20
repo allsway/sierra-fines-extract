@@ -1,7 +1,7 @@
 <?php
 
 /*
-  Calulates the check digit for items and patrons from a fines files (Sierra Postgres)
+  Calculates the check digit for items and patrons from a fines files (Sierra Postgres)
   Where 'allfines.csv' is the name of your fines csv file,
   run 'php readfines.php allfines.csv > newfines.csv' to create the updated fines file.
 */
@@ -11,10 +11,12 @@ function getcheckdigit($recnum) {
     $sum = 0;
     $multiplier = 2;
 
-    foreach ($seq as $digit){
-      $digit *= $multiplier;
-      $sum += $digit;
-      $multiplier++;
+    foreach ($seq as $digit) {
+      if (ctype_digit($digit)) {
+	$digit *= $multiplier;
+	$sum += $digit;
+	$multiplier++;
+      }
     }
     $check = $sum % 11;
     if ($check == 10){
